@@ -15,7 +15,8 @@ class Video
     {
         $this->nome = $nome;
         $this->assistido = false;
-        $this->duracao = \DateInterval::createFromDateString('0');
+        $this->duracao = \DateInterval::createFromDateString('0 seconds');
+        // die(var_dump($this->duracao));
     }
 
     public function assistir(): void
@@ -26,6 +27,7 @@ class Video
     public function minutosDeDuracao(): int
     {
         return $this->duracao->i;
+        //  return 10;
     }
 
     public function recuperarUrl(): string
