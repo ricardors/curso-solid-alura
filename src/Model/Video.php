@@ -1,8 +1,9 @@
 <?php
 
 namespace Alura\Solid\Model;
+use Alura\Solid\Model\Slug;
 
-class Video
+class Video 
 {
     /** @var bool */
     protected $assistido = false;
@@ -11,11 +12,14 @@ class Video
     /** @var \DateInterval */
     protected $duracao;
 
+    protected $slug;
+
     public function __construct(string $nome)
     {
         $this->nome = $nome;
         $this->assistido = false;
         $this->duracao = \DateInterval::createFromDateString('5 minutes');
+        $this->slug = new Slug($this->nome);
         //  die(var_dump($this->duracao));
     }
 
@@ -31,7 +35,7 @@ class Video
     }
 
     public function recuperarUrl(): string
-    {
-        return 'http://videos.alura.com.br/' . http_build_query(['nome' => $this->nome]);
+    {        
+        return 'http://videos.alura.com.br/' . http_build_query(['nome' => $this->slug]);
     }
 }
